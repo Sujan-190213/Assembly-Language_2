@@ -1,0 +1,104 @@
+;GRATER OF THREE NUMBER
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+  NUM1 DB 0
+  NUM2 DB 0
+  NUM3 DB 0
+  
+ 
+.CODE
+MAIN PROC
+  MOV AX,@DATA
+  MOV DS,AX
+  
+  ;1 ST NUM
+  
+  MOV AH,1
+  INT 21H 
+  SUB AL,48 
+  MOV NUM1,AL
+  
+  ;2ND NUM
+  
+  MOV AH,1
+  INT 21H 
+  SUB AL,48 
+  MOV NUM2,AL
+  
+  ;3RD NUM
+  
+  MOV AH,1
+  INT 21H 
+  SUB AL,48  
+  MOV NUM3,AL   
+  
+  
+  ;OPERATION
+  
+  MOV AH,NUM1
+  CMP AH,NUM2
+  JG L1
+  
+  MOV AH,NUM1
+  CMP AH,NUM2
+  JL L2
+  
+  
+  L1:
+  
+    MOV AH,NUM1
+    CMP AH,NUM3
+    JG GNUM1
+    
+    MOV AH,NUM1
+    CMP AH,NUM3
+    JL GNUM3
+    
+    JMP EXIT
+    
+ GNUM1:
+ 
+    MOV DL,NUM1
+    ADD DL,48
+    MOV AH,2
+    INT 21H 
+    
+    JMP EXIT
+    
+ GNUM3:
+ 
+    MOV DL,NUM3
+    ADD DL,48
+    MOV AH,2
+    INT 21H      
+              
+    JMP EXIT          
+              
+L2:
+
+   MOV BH,NUM2
+   CMP BH,NUM3
+   JG GNUM2
+   
+   JMP GNUM3
+                  
+   JMP EXIT
+
+GNUM2:
+
+   MOV DL,NUM2
+   ADD DL,48
+   MOV AH,2
+   INT 21H                
+   
+   JMP EXIT
+              
+EXIT:
+
+     MOV AX,4C00H
+     INT 21H
+    
+MAIN ENDP
+END MAIN

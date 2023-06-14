@@ -1,0 +1,31 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+  LN DB 0
+
+.CODE
+
+MAIN PROC
+    
+    MOV AH,1
+    INT 21H
+    
+    MOV LP,AL
+    MOV AX,0
+    
+    XOR CX,CX
+    
+    MOV CX,AX
+    
+LABEL: 
+    
+     CMP 
+
+
+    
+    
+    MOV AX,4C00H
+    INT 21H
+    
+    MAIN ENDP  
+END MAIN

@@ -1,0 +1,67 @@
+
+org 100h
+
+.data
+A db 0
+B db 0
+C db 0ah
+D db 0dh
+
+str1 db ‘Enter square No $’
+str2 db ‘*’
+
+.code
+
+lea dx,str1
+mov ah,9
+int 21h
+
+mov ah,1
+int 21h
+
+mov a,al
+sub a,48
+mov cl,a
+
+mov dl,c
+mov ah,2
+int 21h
+
+mov dl,d
+mov ah,2
+int 21h
+
+lableouter:
+
+mov bl,cl
+mov cl,a
+
+label:
+
+mov dx,'*'
+mov ah,2
+int 21h
+
+loop label
+mov cl,bl
+
+mov dl,c
+mov ah,2
+int 21h
+
+mov dl,d
+mov ah,2
+int 21h
+
+loop lableouter
+
+ret
+
+
+
+
+
+
+
+
+
